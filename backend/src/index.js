@@ -18,7 +18,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 
 app.use(cors({
-    origin: 'https://bleep-server.onrender.com',
+    origin: 'https://bleep-efaj.onrender.com',
     credentials: true
 }));
 

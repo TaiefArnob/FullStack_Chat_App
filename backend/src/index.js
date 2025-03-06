@@ -7,26 +7,31 @@ import { messageRouter } from './routes/messageRoute.js';
 import cors from 'cors';
 import { app, server } from './config/socket.js';
 
-
 dotenv.config();
 
 const port = process.env.PORT || 6000;
-
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://bleep-efaj.onrender.com'
+];
+
 app.use(cors({
-    origin: 'https://bleep-efaj.onrender.com',
+    origin: allowedOrigins,
     credentials: true
 }));
-
 
 app.use('/api/auth', authRouter);
 app.use('/api/messages', messageRouter);
 
-server.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-    connectDb();
+connectDb().then(() => {
+    server.listen(port, () => {
+        console.log(`Server is running on port: ${port}`);
+    });
+}).catch(err => {
+    console.error("Database connection failed", err);
 });

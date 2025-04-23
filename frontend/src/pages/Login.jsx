@@ -88,7 +88,7 @@ const Login = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="btn btn-primary w-full text-lg font-semibold transition duration-300 hover:bg-blue-600"
+            className="btn bg-amber-500 text-black w-full text-lg font-semibold transition duration-300 hover:bg-blue-600"
             disabled={isLoggingIn}
           >
             {isLoggingIn ? "Logging in..." : "Login"}
